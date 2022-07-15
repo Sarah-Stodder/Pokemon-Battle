@@ -68,12 +68,12 @@ class Arena():
                 print_red(figlet_format("The Fallen", font="big"))
 
             if player_1_dead:
-                print_yellow(figlet_format("PLAYER 1", font="speed"))
+                print_yellow(figlet_format("PLAYER 1", font="starwars"))
                 for poke in player_1_dead:
                     print_yellow(f"{poke.name} has been defeted")
 
             if player_2_dead:
-                print_blue(figlet_format("PLAYER 2", font="speed"))
+                print_blue(figlet_format("PLAYER 2", font="starwars"))
                 for poke in player_2_dead:
                     print_blue(f"{poke.name} has been defeted")
             
@@ -85,13 +85,13 @@ class Arena():
                 print_red(figlet_format("Remaining", font="big"))
 
             if self.trainer1.pokemon:
-                print_yellow(figlet_format("Player 1", font="speed"))
+                print_yellow(figlet_format(f"{self.trainer1.name}", font="starwars"))
                 for poke in self.trainer1.pokemon:
                     print_yellow(f'{poke.name} has {poke.hit_points} life remaining')
 
 
             if self.trainer2.pokemon:
-                print_blue(figlet_format("Player 2", font="speed"))
+                print_blue(figlet_format(f"{self.trainer2.name}", font="starwars"))
                 for poke in self.trainer2.pokemon:
                     print_blue(f'{poke.name} has {poke.hit_points} life remaining')
 
@@ -101,13 +101,15 @@ class Arena():
             else:
                 input_green("\t\t\t\t --Press Enter--")
 
-                if not self.trainer1:
-                  clear_screen()
-                  print_red(figlet_format(f"{self.trainer2.name} Claims Victory",font="poison"))
+        if len(self.trainer1.pokemon)<=0:
+            clear_screen()
+            print_red(figlet_format(f"{self.trainer2.name} Claims Victory",font="graffiti"))
+          
 
-                if not self.trainer2.pokemon:
-                    clear_screen()
-                    print_red(figlet_format(f"{self.trainer1.name} Claims Victory",font="poison"))
+        if len(self.trainer2.pokemon)<=0:
+            clear_screen()
+            print_red(figlet_format(f"{self.trainer1.name} Claims Victory",font="graffiti"))
+         
 
 
   
@@ -168,7 +170,7 @@ class Arena():
         If you change your mind you can type remove to choose a Pokemon to release
         """
         )
-        time.sleep(3)
+        time.sleep(4)
         self.collect_team(self.trainer1)
 
         print_blue(f"""
@@ -177,19 +179,22 @@ class Arena():
         If you change your mind you can type remove to choose a Pokemon to release
         """
         )
-        time.sleep(3)
+        time.sleep(4)
         self.collect_team(self.trainer2)
 
         clear_screen()
-        print_yellow(figlet_format(f"{self.trainer1.name}", font="speed"))
+        print_yellow(figlet_format(f"{self.trainer1.name}", font="starwars"))
         self.trainer1.show_team()
         time.sleep(3)
 
 
         clear_screen()
-        print_blue(figlet_format(f"{self.trainer2.name}", font="speed"))
+        print_blue(figlet_format(f"{self.trainer2.name}", font="starwars"))
         self.trainer2.show_team()
         time.sleep(3)
 
         self.battle_loop()
+
+
+
 

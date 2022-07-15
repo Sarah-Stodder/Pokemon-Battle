@@ -1,6 +1,10 @@
 import requests
 import ascii_magic
 import random
+import time
+from pyfiglet import figlet_format
+
+from colorizer import clear_screen, print_red
 
 class Pokemon():
     def __init__(self):
@@ -45,11 +49,15 @@ class Pokemon():
         while self.hit_points > 0 and pokemon.hit_points > 0:
             chance_self=random.choice([True if n < self.trainer.crit_chance*1000 else False for n in range(1000)])
             chance_pokemon=random.choice([True if n < pokemon.trainer.crit_chance*1000 else False for n in range(1000)])
-
+            
             pokemon.hit_points -= int(attacking_power_self) if not chance_self \
                 else int(attacking_power_self * ((self.trainer.crit_bonus/100)+1))
             self.hit_points -= int(attacking_power_pokemon) if not chance_pokemon\
                 else int(attacking_power_pokemon * ((pokemon.trainer.crit_bonus/100)+1))
+            if chance_self == True and chance_pokemon == True:
+                print_red(figlet_format("Critical Hit", font="starwars"))
+                time.sleep(2)
+                clear_screen()
 
     def display(self, cols=100):
         poke_img = ascii_magic.from_url(self.image, columns=cols)
