@@ -103,12 +103,12 @@ class Arena():
 
         if len(self.trainer1.pokemon)<=0:
             clear_screen()
-            print_red(figlet_format(f"{self.trainer2.name} Claims Victory",font="graffiti"))
+            print_red(figlet_format(f"{self.trainer2.name} Claims Victory!",font="graffiti"))
           
 
         if len(self.trainer2.pokemon)<=0:
             clear_screen()
-            print_red(figlet_format(f"{self.trainer1.name} Claims Victory",font="graffiti"))
+            print_red(figlet_format(f"{self.trainer1.name} Claims Victory!",font="graffiti"))
          
 
 
